@@ -18,7 +18,9 @@ class CreateUsersTable extends Migration
             $table->timestamps();
             $table->string('firstName');
             $table->string('lastName');
-            $table->date('dob');
+            $table->string('email');
+            $table->string('password');
+            $table->date('dob')->nullable();
         });
     }
 
