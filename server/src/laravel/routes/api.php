@@ -14,6 +14,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+ Route::middleware('auth:api')->get('/user', static function (Request $request) {
     return $request->user();
-});
+ });
+
+/* User Routes */
+Route::get('users/{id}', 'UserController@getUser');
+Route::post('users', 'UserController@createUser');
+Route::put('users/{id}', 'UserController@updateUser');
+Route::delete('users/{id}', 'UserController@deleteUser');
+
+/* Cord Routes */
+Route::get('cords', 'CordController@getAllCords');
+Route::post('cords', 'CordController@createCord');
+Route::get('cords/{cord}', 'CordController@getCord');
+Route::put('cords/{cord}', 'CordController@updateCord');
+Route::delete('cords/{cord}', 'CordController@deleteCord');
