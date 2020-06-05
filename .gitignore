@@ -1,1 +1,3 @@
 .idea
+/server/mysql/dbdata
+/server/mysql/volume
