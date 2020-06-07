@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {View, Text} from 'react-native';
-import {Input, Button} from 'react-native-elements';
+import {Input, Button, ThemeContext} from 'react-native-elements';
 import {Screen} from '../common/Screen';
 import {ECard} from '../common/Card';
 import {RootStackParamList} from '../../App';
 import {StackNavigationProp} from '@react-navigation/stack';
+import {CustomThemeContext} from '../../theme/CustomThemeContext';
 
 type LoginScreenNavigationProp = StackNavigationProp<RootStackParamList,'Login'>;
 
@@ -14,6 +15,7 @@ interface Props {
 
 const LoginScreen = (props: Props) => {
     const {navigation} = props;
+    const {theme} = useContext(CustomThemeContext);
     return (
         <Screen>
             <Text>Enti</Text>
@@ -23,7 +25,7 @@ const LoginScreen = (props: Props) => {
                     <Input placeholder='Password' secureTextEntry={true} leftIcon={{name:'lock', type:'material'}} />
                 </View>
                 <View>
-                    <Button title='Forgot password' type='clear' />
+                    <Button title='Forgot password' type='clear' titleStyle={{color: theme.secondaryText}}/>
                     <Button type='clear' title='Create account' onPress={() =>
                         navigation.navigate('SignUp')
                     }/>
