@@ -1,32 +1,24 @@
+import 'react-native-gesture-handler';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import {Card, Input} from 'react-native-elements';
+import { NavigationContainer } from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+import {LoginScreen} from './components/screens/LoginScreen';
+import {SignUpScreen} from './components/screens/SignUpScreen';
+
+export type RootStackParamList = {
+    Login: undefined;
+    SignUp: undefined;
+};
+
+const RootStack = createStackNavigator<RootStackParamList>();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Enti</Text>
-        <Card title='Please login' containerStyle={styles.loginCard}>
-            <View>
-                <Input placeholder='Please enter your email' leftIcon={{name:'email', type:'material'}} />
-                <Input placeholder='Password' secureTextEntry={true} leftIcon={{name:'lock', type:'material'}} />
-            </View>
-        </Card>
-    </View>
+      <NavigationContainer>
+          <RootStack.Navigator>
+              <RootStack.Screen name="Login" component={LoginScreen} />
+              <RootStack.Screen name="SignUp" component={SignUpScreen} />
+          </RootStack.Navigator>
+      </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fbe8a3',
-    alignItems: 'center',
-    justifyContent: 'center',
-      padding: 16
-  },
-    loginCard: {
-      width: '100%',
-        opacity: 0.7,
-        borderRadius: 8
-    }
-});
