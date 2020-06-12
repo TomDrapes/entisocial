@@ -9,8 +9,6 @@ class UserController extends Controller
 {
     public function createUser(Request $request)
     {
-        echo 'OI CUNT';
-
         $request->validate(
             [
                 'firstName'     => 'required',
