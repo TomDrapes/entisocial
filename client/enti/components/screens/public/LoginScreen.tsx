@@ -1,20 +1,13 @@
 import React, {useContext} from 'react';
 import {View, Text} from 'react-native';
-import {Input, Button, ThemeContext} from 'react-native-elements';
-import {Screen} from '../common/Screen';
-import {ECard} from '../common/Card';
-import {RootStackParamList} from '../../App';
-import {StackNavigationProp} from '@react-navigation/stack';
-import {CustomThemeContext} from '../../theme/CustomThemeContext';
+import {Input, Button} from 'react-native-elements';
+import {Screen} from '../../common/Screen';
+import {ECard} from '../../common/Card';
+import {CustomThemeContext} from '../../../theme/CustomThemeContext';
+import { useNavigation } from '@react-navigation/native';
 
-type LoginScreenNavigationProp = StackNavigationProp<RootStackParamList,'Login'>;
-
-interface Props {
-    navigation: LoginScreenNavigationProp
-}
-
-const LoginScreen = (props: Props) => {
-    const {navigation} = props;
+const LoginScreen = () => {
+    const navigation = useNavigation();
     const {theme} = useContext(CustomThemeContext);
     return (
         <Screen>
