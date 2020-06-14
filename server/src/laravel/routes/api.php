@@ -18,6 +18,10 @@ use Illuminate\Support\Facades\Route;
     return $request->user();
  });
 
+/* Registration Routes */
+Route::post('register', 'Auth\RegisterController@registerUser');
+Route::get('verify', 'Auth\RegisterController@verifyUser');
+
 /* User Routes */
 Route::get('users/{id}', 'UserController@getUser');
 Route::post('users', 'UserController@createUser');
