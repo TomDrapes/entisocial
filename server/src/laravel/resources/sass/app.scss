@@ -1,0 +1,21 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+verify-success-container {
+        width: 100vw;
+        height: 100vh;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+verify-success-text-container {
+    padding: 32px;
+    border: 1px solid #ececec;
+}

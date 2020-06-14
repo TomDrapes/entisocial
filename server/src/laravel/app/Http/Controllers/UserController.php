@@ -11,28 +11,31 @@ class UserController extends Controller
     {
         $request->validate(
             [
-                'firstName'     => 'required',
-                'lastName'     => 'required',
-                'email'    => 'required',
-                'password' => 'required'
+                'firstName' => 'required',
+                'lastName'  => 'required',
+                'email'     => 'required',
+                'password'  => 'required'
             ]
         );
 
-         $user = new User(
+        $user = new User(
             [
-                'firstName'     => $request->get('firstName'),
-                'lastName'     => $request->get('lastName'),
-                'email'    => $request->get('email'),
-                'password' => $request->get('password'),
+                'firstName' => $request->get('firstName'),
+                'lastName'  => $request->get('lastName'),
+                'email'     => $request->get('email'),
+                'password'  => $request->get('password'),
 
             ]
-         );
+        );
 
         $user->save();
 
-        return response()->json([
-            'message' => 'new user created'
-                                ], 201);
+        return response()->json(
+            [
+                'message' => 'new user created'
+            ],
+            201
+        );
     }
 
     public function getUser()
