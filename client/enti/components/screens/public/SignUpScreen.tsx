@@ -19,7 +19,7 @@ export const SignUpScreen = () => {
         formData.append('lastName', values.lastName);
         formData.append('email', values.email);
         formData.append('password', values.password);
-        axios.post('http://localhost:8080/api/users', formData).then(res => {
+        axios.post('http://localhost:8080/api/register', formData).then(res => {
             console.log(res)
         })
     }
