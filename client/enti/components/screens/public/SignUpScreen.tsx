@@ -8,6 +8,7 @@ import {Formik} from 'formik';
 import {AuthContext} from '../../../auth/AuthContext';
 import {FormikInput} from '../../common/FormikInput';
 import {object as YupObject, string as YupString, ref as YupRef} from 'yup'
+import {FormikButton} from '../../common/FormikButton';
 
 const validationSchema = YupObject().shape({
     firstName: YupString().required('Please provide a first name'),
@@ -23,7 +24,6 @@ export const SignUpScreen = () => {
     const value = useContext(AuthContext);
 
     const submit = (values: FormikValues) => {
-        console.log(values)
         value?.authDispatch.signUp(values)
     }
 
@@ -41,7 +41,7 @@ export const SignUpScreen = () => {
                                 <FormikInput placeholder='Please enter your email' name='email'/>
                                 <FormikInput placeholder='Choose password' name='password'/>
                                 <FormikInput placeholder='Verify password' secureTextEntry={true} name='verifiedPassword'/>
-                                <Button title='Sign up' type='solid' onPress={() => handleSubmit()} />
+                                <FormikButton title='Sign up' type='solid' />
                     </>
                             )}
                     </Formik>
