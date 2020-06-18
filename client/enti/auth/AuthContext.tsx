@@ -64,7 +64,7 @@ const AuthProvider = (props: Props) => {
 
     const authDispatch = useMemo(() => (
         {
-            signIn: async (data: any) => {
+            signIn: async (data?: any) => {
                 // In a production app, we need to send some data (usually username, password) to server and get a token
                 // We will also need to handle errors if sign in failed
                 // After getting token, we need to persist the token using `AsyncStorage`

@@ -8,7 +8,7 @@ import {Formik} from 'formik';
 import {AuthContext} from '../../../auth/AuthContext';
 import {FormikInput} from '../../common/FormikInput';
 import {object as YupObject, string as YupString, ref as YupRef} from 'yup'
-import {FormikButton} from '../../common/FormikButton';
+import {FormikSubmitButton} from '../../common/FormikSubmitButton';
 
 const validationSchema = YupObject().shape({
     firstName: YupString().required('Please provide a first name'),
@@ -32,20 +32,16 @@ export const SignUpScreen = () => {
     return(
         <Screen>
             <ECard title='Sign up'>
-                <View>
-                    <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={submit}>
-                        {({ handleSubmit }) => (
-                            <>
-                                <FormikInput placeholder='First name' name='firstName'/>
-                                <FormikInput placeholder='Last name'  name='lastName'/>
-                                <FormikInput placeholder='Please enter your email' name='email'/>
-                                <FormikInput placeholder='Choose password' name='password'/>
-                                <FormikInput placeholder='Verify password' secureTextEntry={true} name='verifiedPassword'/>
-                                <FormikButton title='Sign up' type='solid' />
-                    </>
-                            )}
-                    </Formik>
-                </View>
+                <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={submit}>
+                    <View>
+                        <FormikInput placeholder='First name' name='firstName'/>
+                        <FormikInput placeholder='Last name'  name='lastName'/>
+                        <FormikInput placeholder='Please enter your email' name='email'/>
+                        <FormikInput placeholder='Choose password' name='password'/>
+                        <FormikInput placeholder='Verify password' secureTextEntry={true} name='verifiedPassword'/>
+                        <FormikSubmitButton title='Sign up' type='solid' />
+                    </View>
+                </Formik>
             </ECard>
         </Screen>
     )
