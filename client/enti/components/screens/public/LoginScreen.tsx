@@ -14,7 +14,7 @@ const LoginScreen = () => {
             <Text>Enti</Text>
             <ECard title='Please login'>
                 <View>
-                    <Input placeholder='Please enter your email' leftIcon={{name:'email', type:'material'}} />
+                    <Input placeholder='Please enter your email' leftIcon={{name:'email', type:'material', solid: true}} />
                     <Input placeholder='Password' secureTextEntry={true} leftIcon={{name:'lock', type:'material'}} />
                 </View>
                 <View>

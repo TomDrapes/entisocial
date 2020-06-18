@@ -80,12 +80,11 @@ const AuthProvider = (props: Props) => {
                 // In the example, we'll use a dummy token
 
                 const formData = new FormData();
-                formData.append('firstname', data.firstName);
+                formData.append('firstName', data.firstName);
                 formData.append('lastName', data.lastName);
                 formData.append('email', data.email);
                 formData.append('password', data.password);
-                axios.post('http://localhost:8080/api/users', formData).then(res => {
-
+                axios.post('http://localhost:8080/api/register', formData).then(res => {
                     console.log(res)
                 })
 

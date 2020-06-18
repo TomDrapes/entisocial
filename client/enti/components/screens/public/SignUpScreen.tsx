@@ -6,35 +6,41 @@ import {ECard} from '../../common/Card';
 import axios from 'axios';
 import {Formik} from 'formik';
 import {AuthContext} from '../../../auth/AuthContext';
+import {FormikInput} from '../../common/FormikInput';
+import {object as YupObject, string as YupString, ref as YupRef} from 'yup'
 
-interface InitialValues {firstName: string, lastName: string, email: string, password: string, verifiedPassword: string}
+const validationSchema = YupObject().shape({
+    firstName: YupString().required('Please provide a first name'),
+    lastName: YupString().required('Please provide a last name'),
+    email: YupString().required('Please provide a valid email'),
+    password: YupString().required('Password is required'),
+    verifiedPassword: YupString().oneOf([YupRef('password')], "Passwords don't match").required('Confirm Password is required'),
+});
+
+interface FormikValues {firstName: string, lastName: string, email: string, password: string, verifiedPassword: string}
 
 export const SignUpScreen = () => {
     const value = useContext(AuthContext);
 
-    const submit = (values: InitialValues) => {
+    const submit = (values: FormikValues) => {
         console.log(values)
-        const formData = new FormData();
-        formData.append('firstName', values.firstName);
-        formData.append('lastName', values.lastName);
-        formData.append('email', values.email);
-        formData.append('password', values.password);
-        axios.post('http://localhost:8080/api/register', formData).then(res => {
-            console.log(res)
-        })
+        value?.authDispatch.signUp(values)
     }
+
+    const initialValues = {firstName: '', lastName: '', email: '', password: '', verifiedPassword: ''}
+
     return(
         <Screen>
             <ECard title='Sign up'>
                 <View>
-                    <Formik initialValues={{firstName: '', lastName: '', email: '', password: '', verifiedPassword: ''}} onSubmit={submit}>
-                        {({ handleChange, handleBlur, handleSubmit, values }) => (
+                    <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={submit}>
+                        {({ handleSubmit }) => (
                             <>
-                                <Input placeholder='First name' value={values.firstName} onBlur={handleBlur('firstName')} onChangeText={handleChange('firstName')}/>
-                                <Input placeholder='Last name'  value={values.lastName} onBlur={handleBlur('lastName')} onChangeText={handleChange('lastName')}/>
-                                <Input placeholder='Please enter your email' leftIcon={{name:'email', type:'material'}} value={values.email} onBlur={handleBlur('email')} onChangeText={handleChange('email')}/>
-                                <Input placeholder='Choose password' secureTextEntry={true} leftIcon={{name:'lock', type:'material'}} value={values.password} onBlur={handleBlur('password')} onChangeText={handleChange('password')}/>
-                                <Input placeholder='Verify password' secureTextEntry={true} leftIcon={{name:'lock', type:'material'}} value={values.verifiedPassword} onBlur={handleBlur('verifiedPassword')} onChangeText={handleChange('verifiedPassword')}/>
+                                <FormikInput placeholder='First name' name='firstName'/>
+                                <FormikInput placeholder='Last name'  name='lastName'/>
+                                <FormikInput placeholder='Please enter your email' name='email'/>
+                                <FormikInput placeholder='Choose password' name='password'/>
+                                <FormikInput placeholder='Verify password' secureTextEntry={true} name='verifiedPassword'/>
                                 <Button title='Sign up' type='solid' onPress={() => handleSubmit()} />
                     </>
                             )}

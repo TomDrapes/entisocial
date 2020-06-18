@@ -17,7 +17,11 @@ interface Props extends CardProps{
 const ECard = (props: Props) => {
     const {children, ...rest} = props;
     return (
-        <Card containerStyle={styles.card} {...rest}>{children}</Card>
+        <Card containerStyle={{
+            borderRadius: 8,
+            padding: 16,
+            width: '100%',
+        }} {...rest}>{children}</Card>
     )
 };
 
