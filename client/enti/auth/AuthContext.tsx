@@ -4,6 +4,12 @@ import axios from 'axios';
 interface SignupDetails {
 firstName: string, lastName: string, email: string, password: string
 }
+
+interface SignInDetails {
+    email: string;
+    password: string;
+}
+
 type AuthAction = 'RESTORE_TOKEN' | 'SIGN_IN' | 'SIGN_OUT';
 
 interface AuthDispatch {
@@ -64,13 +70,21 @@ const AuthProvider = (props: Props) => {
 
     const authDispatch = useMemo(() => (
         {
-            signIn: async (data?: any) => {
+            signIn: async (data: SignInDetails) => {
                 // In a production app, we need to send some data (usually username, password) to server and get a token
                 // We will also need to handle errors if sign in failed
                 // After getting token, we need to persist the token using `AsyncStorage`
                 // In the example, we'll use a dummy token
+                const formData = new FormData();
+                formData.append('email', data.email);
+                formData.append('password', data.password);
+                axios.post('http://localhost:8080/api/login', formData).then(res => {
+                    console.log(res)
+                    if (res.status === 200) {
+                        dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' });
+                    }
+                }).catch(e => console.log(e))
 
-                dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' });
             },
             signOut: () => dispatch({ type: 'SIGN_OUT' }),
             signUp: async (data: SignupDetails) => {
@@ -88,7 +102,7 @@ const AuthProvider = (props: Props) => {
                     console.log(res)
                 })
 
-                dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' });
+                // dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' });
             },
         }
         ), []);

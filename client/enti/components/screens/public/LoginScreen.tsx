@@ -23,8 +23,8 @@ const LoginScreen = memo(() => {
 
     const initialValues = useMemo(() => ({email: '', password: ''}), []);
 
-    const handleSubmit = () => {
-        value?.authDispatch.signIn();
+    const handleSubmit = (values: {email: string, password: string}) => {
+        value?.authDispatch.signIn(values);
     };
 
     return (
@@ -36,10 +36,11 @@ const LoginScreen = memo(() => {
                     <View>
                         <FormikInput name='email' placeholder='Please enter your email' leftIcon={{name:'email', type:'material', solid: true}} />
                         <FormikInput name='password' placeholder='Password' secureTextEntry={true} leftIcon={{name:'lock', type:'material'}} />
+                        <FormikSubmitButton title='Submit' type='solid' />
                     </View>
                     <View>
                         <Button title='Forgot password' type='clear' titleStyle={{color: theme.secondaryText}}/>
-                        <FormikSubmitButton type='clear' title='Create account' />
+                        <Button type='clear' title='Create account' onPress={() => navigation.navigate('SignUp')} />
                     </View>
                         </>
                 </Formik>
