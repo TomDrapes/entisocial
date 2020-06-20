@@ -7,41 +7,15 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function createUser(Request $request)
+
+    public function getUser(Request $request, $userId)
     {
-        $request->validate(
-            [
-                'firstName' => 'required',
-                'lastName'  => 'required',
-                'email'     => 'required',
-                'password'  => 'required'
-            ]
-        );
+        $user = User::find($userId);
 
-        $user = new User(
-            [
-                'firstName' => $request->get('firstName'),
-                'lastName'  => $request->get('lastName'),
-                'email'     => $request->get('email'),
-                'password'  => $request->get('password'),
-
-            ]
-        );
-
-        $user->save();
-
-        return response()->json(
-            [
-                'message' => 'new user created'
-            ],
-            201
-        );
-    }
-
-    public function getUser()
-    {
-        $user = User::get()->toJson(JSON_PRETTY_PRINT);
-        return response($user, 200);
+        if($user) {
+            return response()->json(['data' => $user], 200);
+        }
+        return response()->json(['message' => 'User not found'], 404);
     }
 
     public function updateUser()

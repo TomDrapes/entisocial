@@ -16,7 +16,14 @@ class AuthController extends Controller
         $password = $request->get('password');
 
         if(Auth::attempt(['email' => $email, 'password' => $password, 'is_verified' => 1])) {
-            return response()->json(['message' => 'success']);
+            $user = Auth::user();
+
+            $token = $user->createToken($user->email . '-' . now());
+
+            return response()->json([
+                'message' => 'success',
+                'token' => $token->accessToken
+                                    ]);
         }
 
         return response()->json(['message' => 'fail']);
