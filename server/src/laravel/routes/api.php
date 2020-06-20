@@ -18,6 +18,9 @@ use Illuminate\Support\Facades\Route;
     return $request->user();
  });
 
+ /* Login */
+Route::post('login', 'Api\AuthController@login');
+
 /* Registration Routes */
 Route::post('register', 'Auth\RegisterController@registerUser');
 Route::get('verify', 'Auth\RegisterController@verifyUser');

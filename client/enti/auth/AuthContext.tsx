@@ -78,7 +78,7 @@ const AuthProvider = (props: Props) => {
                 const formData = new FormData();
                 formData.append('email', data.email);
                 formData.append('password', data.password);
-                axios.post('http://localhost:8080/api/login', formData).then(res => {
+                axios.post('http://localhost:8080/login', formData).then(res => {
                     console.log(res)
                     if (res.status === 200) {
                         dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' });

@@ -11,7 +11,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Mockery\Exception;
+use Illuminate\Support\Str;
 
 class RegisterController extends Controller
 {
@@ -74,7 +74,6 @@ class RegisterController extends Controller
      */
     public function registerUser(Request $request)
     {
-        echo 'Register User';
         $user = new User();
         $user->firstName = $request->get('firstName');
         $user->lastName = $request->get('lastName');

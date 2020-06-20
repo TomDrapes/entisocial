@@ -32,17 +32,14 @@ const LoginScreen = memo(() => {
             <Text>Enti</Text>
             <ECard title='Please login'>
                 <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
-                    <>
                     <View>
                         <FormikInput name='email' placeholder='Please enter your email' leftIcon={{name:'email', type:'material', solid: true}} />
                         <FormikInput name='password' placeholder='Password' secureTextEntry={true} leftIcon={{name:'lock', type:'material'}} />
                         <FormikSubmitButton title='Submit' type='solid' />
-                    </View>
-                    <View>
+
                         <Button title='Forgot password' type='clear' titleStyle={{color: theme.secondaryText}}/>
                         <Button type='clear' title='Create account' onPress={() => navigation.navigate('SignUp')} />
                     </View>
-                        </>
                 </Formik>
             </ECard>
         </Screen>
