@@ -3,6 +3,7 @@
 use App\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -19,7 +20,7 @@ class UserSeeder extends Seeder
                 'firstName'         => 'John',
                 'lastName'          => 'Algernon',
                 'email'             => 'john@email.com',
-                'password'          => 'enti',
+                'password'          => Hash::make('enti'),
                 'verification_code' => sha1(time()),
                 'is_verified'       => 1,
                 'created_at'        => new DateTime()
