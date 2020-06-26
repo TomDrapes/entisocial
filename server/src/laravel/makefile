@@ -3,4 +3,4 @@
 db-migrate:
 	docker-compose exec php php artisan migrate
 db-refresh:
-	docker-compose exec php php artisan migrate:refresh
+	docker-compose exec php php artisan migrate:fresh --seed
