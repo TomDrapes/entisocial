@@ -1,9 +1,7 @@
 import React, {useContext} from 'react';
 import {View} from 'react-native';
-import {Input, Button} from 'react-native-elements';
 import {Screen} from '../../common/Screen';
 import {ECard} from '../../common/Card';
-import axios from 'axios';
 import {Formik} from 'formik';
 import {AuthContext} from '../../../auth/AuthContext';
 import {FormikInput} from '../../common/FormikInput';
@@ -14,7 +12,7 @@ const validationSchema = YupObject().shape({
     firstName: YupString().required('Please provide a first name'),
     lastName: YupString().required('Please provide a last name'),
     email: YupString().required('Please provide a valid email'),
-    password: YupString().required('Password is required'),
+    password: YupString().min(8).required('Password is required'),
     verifiedPassword: YupString().oneOf([YupRef('password')], "Passwords don't match").required('Confirm Password is required'),
 });
 
