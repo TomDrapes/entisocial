@@ -1,12 +1,12 @@
 import React, {memo, useContext, useMemo} from 'react';
 import {View, Text} from 'react-native';
-import {Input, Button} from 'react-native-elements';
+import {Button} from 'react-native-elements';
 import {Screen} from '../../common/Screen';
 import {ECard} from '../../common/Card';
 import {CustomThemeContext} from '../../../theme/CustomThemeContext';
 import { useNavigation } from '@react-navigation/native';
 import {Formik} from 'formik';
-import {object as YupObject, string as YupString, ref as YupRef} from 'yup'
+import {object as YupObject, string as YupString} from 'yup'
 import {FormikInput} from '../../common/FormikInput';
 import {FormikSubmitButton} from '../../common/FormikSubmitButton';
 import {AuthContext} from '../../../auth/AuthContext';
@@ -31,7 +31,11 @@ const LoginScreen = memo(() => {
         <Screen>
             <Text>Enti</Text>
             <ECard title='Please login'>
-                <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
+                <Formik
+                    initialValues={initialValues}
+                    validationSchema={validationSchema}
+                    validateOnChange={false}
+                    onSubmit={handleSubmit}>
                     <View>
                         <FormikInput name='email' placeholder='Please enter your email' leftIcon={{name:'email', type:'material', solid: true}} />
                         <FormikInput name='password' placeholder='Password' secureTextEntry={true} leftIcon={{name:'lock', type:'material'}} />
