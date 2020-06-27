@@ -9,7 +9,7 @@ class Kernel extends HttpKernel
     /**
      * The application's global HTTP middleware stack.
      * These middleware are run during every request to your application.
-     * 
+     *
      * Note: I removed the HandleCors middleware because
      * I am already setting the response headers in my default.conf for nginx
      *

@@ -1,7 +1,30 @@
+### Getting Started
+To begin using this boilerplate setup there are a few things you will need to do first.
+
+---
+### Create .env file
+You will need to copy and paste the `.env.example` file inside the `laravel` directory and rename it to `.env`.
+
+Run this command to automatically fill out the APP_KEY in the `.env` file:
+    `php artisan key:generate`
+    
+Ensure that the database name configured in the `mysql` container inside `docker-compose.yml` matches the value 
+for DB_DATABASE inside `.env`
+
+Note after running `make db-refresh` you might have to install passport again. Note ensure it is installed
+inside the docker container.
+
+You will need to add your gmail credentials for `MAIL_USERNAME`, `MAIL_PASSWORD` and `MAIL_FROM_ADDRESS`. Note that
+if you haven't already, you will need to go into your gmail account and allow access to third party apps. You will also 
+need to generate an App password in your gmail security settings to use for the `MAIL_PASSWORD` value and not your emails
+login password.
+
+---
 ### Useful make commands
 
 - `db-refresh` - this will execute `php artisan migrate:refresh` in the php container
 - `db-migrate` - this will execute `php artisan migrate` in the php container
+- `clear-caches` - this will clear the routes, config, cache and then call `composer dump-autoload`
 
 ### Useful php Artisan commands
 
